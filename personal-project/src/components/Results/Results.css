@@ -1,0 +1,17 @@
+.results {
+    position: relative;
+    top: 10px;
+    width: 99%;
+    height: 90%;
+    font-family: 'Comfortaa'; 
+    font-size: 1em;
+    display: block;
+}
+
+.glyphicon-remove{
+    color: red;
+}
+
+.glyphicon-remove:active{
+   color: gray;
+}
