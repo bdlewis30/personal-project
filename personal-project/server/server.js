@@ -7,15 +7,28 @@ const express = require('express')
     , trailCtrl = require('./controller/trailController')
     , fishingCtrl = require('./controller/fishingController')
     , campingCtrl = require('./controller/campingController')
+    , session = require('express-session')
+    , checkForSession = require('./middlewares/checkForSession')
 
 
-// Create Server
+// CONTROLLERS
+const campingController = require('./controller/campingController');
+const fishingController = require('./controller/fishingController');
+const trailController = require('./controller/trailController');
+
+// CREATE EXPRESS
 const app = express();
 
-// Middleware
+// EXPRESS
 app.use(bodyParser.json());
 app.use(cors());
-
+app.use(session({
+    secret: process.env.SECRET_SESSION,
+    resave: false,
+    saveUninitilized: true
+}));
+app.use(checkForSession);
+app.use(express.static(`${__dirname}/build`));
 
 // HIKING ENDPOINTS
 app.get('/api/', trailCtrl.read);
