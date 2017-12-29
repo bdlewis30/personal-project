@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Results.css';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 
 export default class Results extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -15,15 +15,16 @@ export default class Results extends Component {
             map: `https://www.google.com/maps/@${props.result.latitude},${props.result.longitude},15z`,
             latitude: props.result.lat,
             longitude: props.result.lon,
-            favTrail: [{}],
+            favTrails: [],
             id: props.result.id
         }
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.updateDesc = this.updateDesc.bind(this);
-        
+        this.addToFavorites = this.addToFavorites.bind(this);
+        this.deleteTrail = this.deleteTrail.bind(this);
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         this.setState({
             name: newProps.result.name,
             city: newProps.resut.city,
@@ -36,33 +37,62 @@ export default class Results extends Component {
         })
     }
 
-    handleDescriptionChange(event){
+    handleDescriptionChange(event) {
         this.setState({
             description: event.target.event
         })
     }
 
-    updateDesc(){
-        axios.put('/api/' + this.state.id, {description: this.state.description});
+    updateDesc() {
+        axios.put('/api/' + this.state.id, { description: this.state.description });
         // Place this into the database
     }
 
-    addToFavorites(){
-        axios.put('/api/' + this.state.id, {})
+    // Place this into the database
+    addToFavorites() {
+        this.setState({
+            favTrails: [
+                {
+                    name: props.result.name,
+                    city: props.resut.city,
+                    state: props.result.city,
+                    description: props.result.description || '',
+                    map: `https://www.google.com/maps/@${props.result.latitude},${props.result.longitude},15z`,
+                    latitude: props.result.lat,
+                    longitude: props.result.lon,
+                    id: props.result.id
+                }
+            ]
+        })
     }
 
-    render(){
-        return(
+    deleteTrail() {
+        axios.delete('/api/' + this.state.id).then(() => {
+            this.props.deletedTrail();
+        })
+    }
+
+    render() {
+        return (
             <tr>
                 <td>{this.state.name}</td>
                 <td>{this.state.city}, {this.state.state}</td>
-                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description}/></td>
+                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
                 <td><a href={this.state.map} target="_blank" rel="noopener noreferrer">Map</a></td>
                 <td>{this.state.latitude}</td>
                 <td>{this.state.longitude}</td>
-                <td><button onClick={}>{this.state.favTrail}</button></td>
-                <td>{}</td>
+                <td><button onClick={}>{this.addToFavorites}</button></td>
+                <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
             </tr>
         )
     }
+}
+
+Results.defaultProps = {
+    deletedTrail: function () { }
+}
+
+Results.propTypes = {
+    results: PropTypes.object.isRequired,
+    deletedTrail: PropTypes.func
 }

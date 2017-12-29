@@ -1,14 +1,15 @@
 import axios from 'axios';
 
 const initialState = {
-    name: t.name,
-    city: t.city,
-    state: t.state,
-    description: t.description,
-    map: `https://www.google.com/maps/@${t.lat},${t.lon},15z`,
-    latitude: t.lat,
-    longitude: t.lon,
-    id: t.unique_id
+    name: result.name,
+    city: result.city,
+    state: result.city,
+    description: result.description || '',
+    map: `https://www.google.com/maps/@${initialState.latitude},${initialState.longitude},15z`,
+    latitude: result.lat,
+    longitude: result.lon,
+    favTrails: [],
+    id: result.id
 }
 
 // ACTION TYPES
@@ -21,8 +22,8 @@ export default function (state = initialState, action) {
     let { payload } = action;
     switch (action.type) {
         //case NAME: code...
-        case SEARCH:  
-            return Object.assign({}, state, {name: payload.name, city: payload.city, state: payload.state, description: payload.description, map: `https://www.google.com/maps/@${t.lat},${t.lon},15z`, latitude: payload.lat, longitude: payload.lon, id: payload.unique_id})
+        case SEARCH:
+            return Object.assign({}, state, { name: payload.name, city: payload.city, state: payload.state, description: payload.description, map: `https://www.google.com/maps/@${lat},${lon},15z`, latitude: payload.lat, longitude: payload.lon, id: payload.unique_id })
         default: return state;
     }
 }
