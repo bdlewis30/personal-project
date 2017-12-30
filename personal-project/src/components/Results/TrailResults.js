@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Results.css';
 import PropTypes from 'prop-types';
 import axios from 'axios'
+//import reducer
 
 export default class Results extends Component {
     constructor(props) {
@@ -81,7 +82,7 @@ export default class Results extends Component {
                 <td><a href={this.state.map} target="_blank" rel="noopener noreferrer">Map</a></td>
                 <td>{this.state.latitude}</td>
                 <td>{this.state.longitude}</td>
-                <td><button onClick={}>{this.addToFavorites}</button></td>
+                <td className="rowContainer"><button className="favButton" onClick={this.addToFavorites}/></td>
                 <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
             </tr>
         )
@@ -96,3 +97,5 @@ Results.propTypes = {
     results: PropTypes.object.isRequired,
     deletedTrail: PropTypes.func
 }
+
+// connect

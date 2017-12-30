@@ -15,3 +15,25 @@
 .glyphicon-remove:active{
    color: gray;
 }
+
+.rowContainer {
+    flex-direction: row;
+}
+
+.favButton {
+    justify-content: center;
+    align-items: center;
+    border: solid gray 1.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, lightgray, gray);
+    width: 25px;
+    height: 25px;
+}
+
+.favButton:hover {
+    border: solid gray 1.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, lightgreen, green);
+    width: 25px;
+    height: 25px;
+}

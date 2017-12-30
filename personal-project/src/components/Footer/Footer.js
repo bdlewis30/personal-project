@@ -5,7 +5,8 @@ export default class Footer extends Component{
     render(){
         return(
             <footer className="footer-container">
-                <p>Database provided by <a href="http://trailapi.com/" target="_blank" rel="noopener noreferrer"> TrailAPI.com </a> Copyright 2012 TrailAPI.</p>
+                <p>Trails database provided by <a href="http://trailapi.com/" target="_blank" rel="noopener noreferrer"> TrailAPI.com </a> Copyright 2012 TrailAPI.</p>
+                <p>Campsite data source: <a href="http://ridb.recreation.gov" rel="noopener noreferrer">ridb.recreation.gov</a></p>
             </footer>
         )
     }

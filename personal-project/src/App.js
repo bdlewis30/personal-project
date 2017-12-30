@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Search from './components/Search/Search';
+import Footer from './components/Footer/Footer';
+import Favorites from './components/Favorites/Favorites';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hi there!</h1>
+        {Router}
       </div>
     );
   }

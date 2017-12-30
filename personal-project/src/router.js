@@ -1,5 +1,5 @@
 import react from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Favorites from './components/Favorites/Favorites';
 import Search from './components/Search/Search';
