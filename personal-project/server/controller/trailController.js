@@ -1,31 +1,31 @@
-var trails = [];
 
-function findTrail(id){
-    return trails.findIndex((trail) => {
-        return trail.id == id;
-    })
-}
+const q = require('q');
 
 module.exports = {
     read: (req, res) => {
-        res.send(trails);
+        let query = 'SELECT * FROM Trails'
+        app.get('db').query(query, []).then((rows)=>{
+            res.json(rows)
+        });
     },
     create: (req, res) => {
-        trails = [];
+        let promises = [];
+        let query = "INSERT INTO Trails(TrailName, City, State, Map, Latitude, Longitude, UniqueID) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *;"
         req.body.forEach(t => {
-            let trail = {
-                name: t.name,
-                city: t.city,
-                state: t.state,
-                description: t.description,
-                map: `https://www.google.com/maps/@${t.lat},${t.lon},15z`,
-                latitude: t.lat,
-                longitude: t.lon,
-                id: t.unique_id
-            }
-            trails.push(trail);
+            let trail = [
+                t.name,
+                t.city,
+                t.state,
+                `https://www.google.com/maps/@${t.lat},${t.lon},15z`,
+                t.lat,
+                t.lon,
+                t.unique_id
+            ]
+            promises.push(app.get('db').query(query, trail))
         })
-        res.json(trails);
+        q.all(promises).done((results) => {
+            res.status(200).end();
+        })
     },
     update: (req, res) => {
         var i = findTrail([req.params.id]);

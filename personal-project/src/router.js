@@ -9,7 +9,6 @@ import Favorites from './components/Favorites/Favorites';
 export default (
     <Switch>
         <Route component={Search} path="/" exact />
-        <Route component={CampResults} path="/Results/CampResults" />
         <Route component={TrailResults} path="/Results/TrailResults" />
     </Switch>
 )

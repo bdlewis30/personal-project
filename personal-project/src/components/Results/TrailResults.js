@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Results.css';
 import PropTypes from 'prop-types';
-import axios from 'axios'
-import reducer from '../../ducks/reducer';
+import axios from 'axios';
+import reducer from '../../ducks/trailReducer';
 
-export default class Results extends Component {
+export default class TrailResults extends Component {
     constructor(props) {
         super(props);
 

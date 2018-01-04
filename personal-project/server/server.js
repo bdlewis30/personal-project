@@ -5,16 +5,8 @@ const express = require('express')
     , cors = require('cors')
     , massive = require('massive') 
     , trailCtrl = require('./controller/trailController')
-    , fishingCtrl = require('./controller/fishingController')
-    , campingCtrl = require('./controller/campingController')
     , session = require('express-session')
-    , checkForSession = require('./middlewares/checkForSession')
-
-
-// CONTROLLERS
-const campingController = require('./controller/campingController');
-const fishingController = require('./controller/fishingController');
-const trailController = require('./controller/trailController');
+    , userConstoller = require('./controller/userController')
 
 // CREATE EXPRESS
 const app = express();
@@ -27,27 +19,20 @@ app.use(session({
     resave: false,
     saveUninitilized: true
 }));
-app.use(checkForSession);
-app.use(express.static(`${__dirname}/build`));
+
+// app.use(express.static(`${__dirname}/build`));
 
 // HIKING ENDPOINTS
-app.get('/api/', trailCtrl.read);
-app.post('/api/', trailCtrl.create);
-app.put('/api/:id', trailCtrl.update);
-app.delete('/api/:id', trailCtrl.delete);
+app.get('/api/trails/', trailCtrl.read);
+app.post('/api/trails/', trailCtrl.create);
+app.put('/api/trails/:id', trailCtrl.update);
+app.delete('/api/trails/:id', trailCtrl.delete);
 
-// CAMPING ENDPOINTS
-app.get('/api/', campingCtrl.read);
-app.post('/api/', campingCtrl.create);
-app.put('/api/', campingCtrl.update);
-app.delete('/api/', campingCtrl.delete);
-
-// FISHING ENDPOINTS
-app.get('/api/', fishingCtrl.read);
-app.post('/api', fishingCtrl.create);
-app.put('/api/', fishingCtrl.update);
-app.delete('/api/', fishingCtrl.delete);
-
+// USER ENDPOINTS
+app.get('/api/users/', userConstoller.read);
+app.post('/api/users/', userConstoller.create);
+app.put('/api/users/:id', userConstoller.update);
+app.delete('/api/users/:id', userConstoller.delete);
 
 massive(process.env.CONNECTION_STRING).then(db => {
     app.set('db', db)
