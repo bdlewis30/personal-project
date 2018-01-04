@@ -6,15 +6,14 @@ export default class Header extends Component {
     render() {
         return (
             <div>
-                <h1>Find A Trail</h1>
+                <h1>Trail and Campground Finder</h1>
                 <div>
                     <section className="dropContainer">
                         <DropdownButton bsSize="large" title="Large button" id="dropdown-size-large">
-                            <li eventKey="1">Action</li>
-                            <li eventKey="2">Another action</li>
-                            <li eventKey="3">Something else here</li>
+                            <li eventKey="1">Trails</li>
+                            <li eventKey="2">Camping</li>
                             <li divider />
-                            <li eventKey="4">Separated link</li>
+                            <li eventKey="4">Favorites</li>
                         </DropdownButton>
                     </section>
                 </div>

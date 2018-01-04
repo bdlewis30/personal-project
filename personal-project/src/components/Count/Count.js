@@ -4,7 +4,7 @@ import './Count.css';
 const Count = (props) => {
     return (
         <div className="search-count">
-            {`Trails found: ${props.trailsFound}`}
+            {`Locations found: ${props.trailsFound}`}
         </div>
     )
 }

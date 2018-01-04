@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import CampingResults from '../Results/CampingResults';
-import FishingResults from '../Results/FishingResults';
+import CampResults from '../Results/CampResults';
 import TrailResults from '../Results/TrailResults';
 import Favorites from '../Favorites/Favorites';
