@@ -1,10 +1,7 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import reducer from './ducks/reducer';
-import trailReducer from './ducks/trailReducer';
 
-let store = createStore(combineReducers({
-    trailReducer
-}));
+let store = createStore(reducer);
 
 export const initialState = {
     search: {
@@ -14,14 +11,14 @@ export const initialState = {
     },
     results: {
         searchResults: [],
-        name: result.name,
-        city: result.city,
-        state: result.city,
-        description: result.description || '',
+        name: initialState.result.name,
+        city: initialState.result.city,
+        state: initialState.result.city,
+        description: initialState.result.description || '',
         map: `https://www.google.com/maps/@${initialState.results.latitude},${initialState.results.longitude},15z`,
-        latitude: result.lat,
-        longitude: result.lon,
-        id: result.id
+        latitude: initialState.result.lat,
+        longitude: initialState.result.lon,
+        id: initialState.result.id
     }
 }
 

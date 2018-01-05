@@ -3,6 +3,7 @@ import './Results.css';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import reducer from '../../ducks/trailReducer';
+import store from '../../store';
 
 export default class TrailResults extends Component {
     constructor(props) {
