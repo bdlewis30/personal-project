@@ -10,10 +10,16 @@ export default class Search extends Component {
     constructor() {
         super();
 
-        this.handleState = this.handleState.bind(this);
+        this.state = {
+            searchState: 'OR',
+            searchCity: 'Portland',
+            radius: 25
+        }
+
         this.handleCity = this.handleCity.bind(this);
-        this.handleButton = this.handleButton.bind(this);
+        this.handleState = this.handleState.bind(this);
         this.handleRadius = this.handleRadius.bind(this);
+        this.handleButton = this.handleButton.bind(this);
         this.getList = this.getList.bind(this);
     }
 
@@ -30,7 +36,7 @@ export default class Search extends Component {
     }
 
     handleButton() {
-        axios.get(`https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[city_cont]=${this.state.searchCity}&q[state_cont]=${this.state.searchState}&radius=${this.state.radius}`, config.apiHeader)
+        axios.get(`https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[city_cont]=${this.state.searchCity}&q[state_cont]=${this.state.searchState}&radius=${this.state.radius}`, process.env.apiHeader)
             .then(result => {
                 let results = result.data.places.map(e => {
                     return {
@@ -74,7 +80,7 @@ export default class Search extends Component {
                 <div className="submit-btn">
                     <button className="button" onClick={this.handleButton}>Submit</button>
                 </div>
-                {this.state.searchResults.length > 0 ? <Found trailsFound={this.state.searchResults.length}/>: null}
+                {this.state.searchResults.length > 0 ? <Found trailsFound={this.state.searchResults.length} /> : null}
                 <div className="trail-table">
                     {trailsToDisplay.length > 0 &&
                         <Table striped responsive hover condensed >

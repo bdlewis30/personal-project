@@ -4,12 +4,6 @@ import reducer from './ducks/reducer';
 let store = createStore(reducer);
 
 export const initialState = {
-    search: {
-        searchState: 'OR',
-        searchCity: 'Portland',
-        radius: 25
-    },
-    results: {
         searchResults: [],
         name: initialState.result.name,
         city: initialState.result.city,
@@ -19,7 +13,6 @@ export const initialState = {
         latitude: initialState.result.lat,
         longitude: initialState.result.lon,
         id: initialState.result.id
-    }
 }
 
 export default store;

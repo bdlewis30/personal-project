@@ -6,7 +6,7 @@ const express = require('express')
     , massive = require('massive') 
     , trailCtrl = require('./controller/trailController')
     , session = require('express-session')
-    , userConstoller = require('./controller/userController')
+    , userController = require('./controller/userController')
 
 // CREATE EXPRESS
 const app = express();

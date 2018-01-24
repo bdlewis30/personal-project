@@ -5,14 +5,6 @@ const SEARCH = "SEARCH";
 const ADD_TRAILS = "ADD_TO_FAV_TRAILS";
 
 // ACTION CREATORS
-// export function search(state, action) {
-//     if (typeof state === 'Undefined') {
-//         return initialState
-//     }
-//     return state
-// }
-
-store.getState()
 
 export function addToFavTrails() {
     return {
